@@ -31,7 +31,7 @@ app.post('/handler', (request, response) => {
 
     let mailData = {
         from: process.env.MYEMAIL,
-        to: "juankete78@gmail.com",
+        to: "jnk.beneyto@gmail.com",
         subject: formData.nombre,
         text: `Client email: ${formData.email} / message: ${formData.mensaje}`
     };
