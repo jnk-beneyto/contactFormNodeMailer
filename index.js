@@ -8,10 +8,14 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+//setting engine
+
+app.set('views', (__dirname + '/views'));
+app.set('view engine', 'ejs');
 
 // routes
 
-app.get('/', (request, response) => response.sendFile(`${__dirname}/index.html`));
+app.get('/', (request, response) => response.status(200).render('index'));
 
 app.post('/handler', (request, response) => {
     const formData = request.body;
@@ -40,16 +44,23 @@ app.post('/handler', (request, response) => {
 
     trans.sendMail(mailData, (err, data) => {
         if (err) {
-            let errorEmail = "there is an error";
-            console.log("there is an error");
-            response.json(errorEmail);
+            let msg = {
+                msg: 'error'
+            };
+            response.status(500).render('index', {
+                msg
+            });
         }
-        let okEmail = "Email sent successfully";
         console.log("Email sent successfully");
-        response.json(okEmail);
+        let msg = {
+            msg: 'email sent successfully'
+        };
+        response.status(200).render('index', {
+            msg
+        });
     });
 });
 
 //server
 
-app.listen(3000, () => console.info('Application running on port 3000'));
+app.listen(4000, () => console.info('Application running on port 4000'));

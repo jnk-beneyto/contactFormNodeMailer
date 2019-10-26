@@ -28,20 +28,20 @@
                         <div class="justify-content-center">
                             <div class="form-group">
                                 <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Name"
-                                    aria-describedby="helpId" />
+                                    aria-describedby="helpId" required />
                             </div>
                         </div>
                     </div>
                     <div class="container">
                         <div class=" form-group ">
-                            <input type="text" name="email" id="email" class="form-control" placeholder="email"
-                                aria-describedby="helpId" />
+                            <input type="email" name="email" id="email" class="form-control" placeholder="email"
+                                aria-describedby="helpId" required />
                         </div>
                     </div>
                     <div class="container ">
                         <div class="form-group ">
                             <textarea class="form-control rounded-0" name="mensaje" id="mensaje"
-                                placeholder="Message..." rows="3"></textarea>
+                                placeholder="Message..." rows="3" required></textarea>
                         </div>
                     </div>
             </div>
@@ -59,6 +59,11 @@
                 </div>
             </div>
             </form>
+        </div>
+        <div class="container mx-auto d-flex justify-content-center bg-success">
+            <% if (typeof msg == 'object' && msg) { %>
+            <%= msg.msg %>
+            <% } %>
         </div>
     </div>
 
